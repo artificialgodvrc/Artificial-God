@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>実験体紹介 | Artificial God.</title>
+<meta name="description" content="Artificial God. Creatura研究施設 公式ホームページ(VRChatイベント「Artificial God.」/フィクション)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body class="db" data-page="subject">
+<div id="site-header"></div>
+
+<div class="page-head">
+  <img class="bg" src="img/subject-bg.webp" alt="">
+  <div class="wrap">
+    <span class="en">CREATURA</span>
+    <h1>実験体紹介</h1>
+  </div>
+</div>
+<div class="intro"><div class="wrap"><p>Artificial God. Creatura研究施設で生み出された実験体たちの記録です。それぞれが独自の特性と製造番号を付与されています。</p></div></div>
+<main>
+<section><div class="wrap">
+  <div class="sec-head"><h2>SUBJECT DATABASE</h2><span>CREATURA</span></div>
+  <!-- 中身は js/subjects-data.js から組み立てられる -->
+  <div class="db-grid" id="subject-list"></div>
+</div></section>
+</main>
+
+<div id="site-footer"></div>
+<script src="js/layout.js"></script>
+<script src="js/subjects-data.js"></script>
+<script src="js/subjects.js"></script>
+<script src="js/motion.js"></script>
+</body>
+</html>
