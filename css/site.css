@@ -176,7 +176,9 @@ ul.ban li::before{content:"";position:absolute;left:18px;top:1.25em;width:14px;h
 .closed{border:1px solid var(--seal);background:var(--surface);padding:18px 22px;display:flex;gap:18px;align-items:center}
 .closed .ico{color:var(--seal)}
 .closed > div{flex:1;min-width:0}
-.rule > div,.cta > div{flex:1;min-width:0}
+.rule > div{flex:1;min-width:0}
+.cta > div{flex:1 1 300px;min-width:0}
+@media (max-width:600px){.cta{flex-direction:column;align-items:stretch;gap:16px}.cta > div{flex:none}.cta .btn{text-align:center}}
 .closed h3{font-family:var(--body);font-size:17px;color:var(--seal)}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0;border:1px solid var(--line);background:var(--surface)}
 .cards article{padding:20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 -1px -1px 0}
@@ -346,3 +348,25 @@ a.subject.rv.in:hover{transform:translateY(-3px);transition-delay:0s}
 .btn::after{content:"→";display:inline-block;margin-left:10px;transition:transform .25s}
 .btn:hover::after{transform:translateX(5px)}
 form .btn::after{content:none}
+
+/* ---------- 動画(ホームの素体募集) ---------- */
+.movie{display:grid;grid-template-columns:minmax(200px,.8fr) minmax(0,1.6fr);gap:clamp(20px,4vw,48px);align-items:center;margin-top:44px;padding-top:36px;border-top:1px solid var(--rule-dark)}
+@media (max-width:700px){.movie{grid-template-columns:1fr}}
+.movie-text .en{font-family:var(--mono);font-size:12px;letter-spacing:.3em;color:var(--dim)}
+.movie-text h3{font-size:clamp(22px,4.4vw,30px);margin:4px 0 10px}
+.movie-text p{font-size:15px;color:var(--dim)}
+.yt{display:block;position:relative;width:100%;aspect-ratio:16/9;padding:0;border:1px solid var(--rule-dark);background:#000;cursor:pointer;overflow:hidden}
+.yt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s,opacity .3s;opacity:.88}
+.yt:hover img{transform:scale(1.04);opacity:1}
+.yt .play{position:absolute;left:50%;top:50%;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;background:rgba(13,26,51,.82);border:2px solid var(--on-dark);transition:background .25s,transform .25s}
+.yt .play::after{content:"";position:absolute;left:28px;top:21px;border-left:22px solid var(--on-dark);border-top:14px solid transparent;border-bottom:14px solid transparent}
+.yt:hover .play{background:var(--seal);transform:scale(1.08)}
+iframe.yt{cursor:auto}
+
+/* 研究員紹介:チームを横一列に並べる部門 / 離して置く一人 */
+.team-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0 14px}
+.team-row .staff{grid-template-columns:1fr}
+.dept.lone{margin-top:120px;max-width:340px;margin-left:auto}
+.dept.lone .team-name{margin-top:0}
+.team-row > div{display:flex;flex-direction:column}
+.team-row .staff{flex:1;grid-auto-rows:1fr}

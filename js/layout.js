@@ -110,4 +110,17 @@
       a.textContent = 'フォーム準備中';
     }
   });
+
+  /* YouTubeの埋め込み。最初はサムネイルだけを出し、押されたときに動画を読み込む。 */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-yt]'), function (b) {
+    b.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.className = 'yt';
+      f.src = 'https://www.youtube-nocookie.com/embed/' + b.getAttribute('data-yt') + '?autoplay=1&rel=0';
+      f.title = 'Creatura素体募集';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      b.parentNode.replaceChild(f, b);
+    });
+  });
 })();

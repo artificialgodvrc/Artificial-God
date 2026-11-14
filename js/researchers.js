@@ -28,13 +28,15 @@
     }
     return h + '</div></article>';
   }
+  function team(t) {
+    return '<h3 class="team-name">' + esc(t.name) + '</h3>' +
+      '<div class="staff">' + t.people.map(person).join('') + '</div>';
+  }
   root.innerHTML = DEPARTMENTS.map(function (d) {
-    return '<div class="dept" style="--dept:' + d.color + '">' +
-      '<h2 class="dept-name">' + esc(d.name) + '</h2>' +
-      d.teams.map(function (t) {
-        return '<h3 class="team-name">' + esc(t.name) + '</h3>' +
-          '<div class="staff">' + t.people.map(person).join('') + '</div>';
-      }).join('') +
-    '</div>';
+    var teams = d.row
+      ? '<div class="team-row">' + d.teams.map(function (t) { return '<div>' + team(t) + '</div>'; }).join('') + '</div>'
+      : d.teams.map(team).join('');
+    return '<div class="dept' + (d.lone ? ' lone' : '') + '" style="--dept:' + d.color + '">' +
+      (d.name ? '<h2 class="dept-name">' + esc(d.name) + '</h2>' : '') + teams + '</div>';
   }).join('');
 })();
