@@ -24,7 +24,7 @@
     var html = '';
     SUBJECTS.forEach(function (s) {
       if (s.listed === false) return;
-      html += '<a class="subject" href="subject-' + s.entry + '.html">' +
+      html += '<a class="subject" href="subject-' + s.entry + '">' +
         '<span class="entry-no">' + s.entry + '</span>' +
         '<img class="face" src="img/subject/' + s.img + '.webp" alt="' + esc(s.name) + '" loading="lazy" width="420" height="598">' +
         '<div class="body">' +
@@ -62,7 +62,7 @@
     if (!s) {
       detail.innerHTML = '<div class="wrap notfound"><h1>NO RECORD</h1>' +
         '<p>該当する実験体は登録されていません。</p>' +
-        '<p><a href="subject.html">&lt;&lt; 実験体紹介へ戻る</a></p></div>';
+        '<p><a href="subject">&lt;&lt; 実験体紹介へ戻る</a></p></div>';
       return;
     }
     document.title = (s.secret ? s.code : s.name) + ' | Artificial God.';
@@ -98,7 +98,7 @@
     detail.innerHTML =
       '<div class="wrap">' +
         '<div class="db-head">' +
-          '<p class="crumbs"><a href="subject.html">&lt;&lt; 実験体紹介</a></p>' +
+          '<p class="crumbs"><a href="subject">&lt;&lt; 実験体紹介</a></p>' +
           '<h1>SUBJECT DATABASE:' + esc(s.code) + '</h1>' +
           '<div class="db-meta">' +
             '<span>PUBLIC ENTRY: ' + s.entry + '</span>' +
@@ -110,8 +110,8 @@
             esc(s.secret ? '個体票 ' + s.code : s.name + 'の個体票') + '" width="905" height="1280">' +
           '<aside>' + side +
             '<div class="pager">' +
-              (prev ? '<a href="subject-' + prev.entry + '.html">&lt;&lt; ' + prev.entry + '</a>' : '<span></span>') +
-              (next ? '<a href="subject-' + next.entry + '.html">' + next.entry + ' &gt;&gt;</a>' : '<span></span>') +
+              (prev ? '<a href="subject-' + prev.entry + '">&lt;&lt; ' + prev.entry + '</a>' : '<span></span>') +
+              (next ? '<a href="subject-' + next.entry + '">' + next.entry + ' &gt;&gt;</a>' : '<span></span>') +
             '</div>' +
           '</aside>' +
         '</div>' +

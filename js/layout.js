@@ -6,19 +6,19 @@
    ========================================================= */
 (function () {
   var PAGES = [
-    { key: 'home',        href: 'index.html',       label: 'ホーム' },
-    { key: 'facility',    href: 'facility.html',    label: '施設案内' },
-    { key: 'experiment',  href: 'experiment.html',  label: '実験概要' },
-    { key: 'subject',     href: 'subject.html',     label: '実験体紹介' },
-    { key: 'researcher',  href: 'researcher.html',  label: '研究員紹介' },
-    { key: 'explanation', href: 'explanation.html', label: '被験者の方へ' },
-    { key: 'recruitment', href: 'recruitment.html', label: '採用情報' },
-    { key: 'news',        href: 'news.html',        label: 'ニュース' }
+    { key: 'home',        href: './',       label: 'ホーム' },
+    { key: 'facility',    href: 'facility',    label: '施設案内' },
+    { key: 'experiment',  href: 'experiment',  label: '実験概要' },
+    { key: 'subject',     href: 'subject',     label: '実験体紹介' },
+    { key: 'researcher',  href: 'researcher',  label: '研究員紹介' },
+    { key: 'explanation', href: 'explanation', label: '被験者の方へ' },
+    { key: 'recruitment', href: 'recruitment', label: '採用情報' },
+    { key: 'news',        href: 'news',        label: 'ニュース' }
   ];
   /* お問い合わせ用のGoogleフォームのURL。ここに貼ると、全ページの「お問い合わせ」が
      そのフォームを新しいタブで開くようになる。空のあいだはホームの案内欄へ移動する。 */
   var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSd2eUifyvKQj1dDNGFOwmdyVI3vy39u29S0p3AX-5Q4DRpHOQ/viewform';
-  var CONTACT_HREF = FORM_URL || 'index.html#contact';
+  var CONTACT_HREF = FORM_URL || './#contact';
   var CONTACT_ATTR = FORM_URL ? ' target="_blank" rel="noopener"' : '';
   var X_URL = 'https://x.com/AGod_VRC';
   var VRC_URL = 'https://vrchat.com/home/group/grp_e108ace5-7936-4562-9e25-3c4748b66954';
@@ -41,7 +41,7 @@
         '<a class="contact-link" href="' + CONTACT_HREF + '"' + CONTACT_ATTR + '>お問い合わせ</a></span>' +
       '</div></div>' +
       '<header class="head"><div class="wrap">' +
-        '<a class="brand" href="index.html">' +
+        '<a class="brand" href="./">' +
           '<img src="img/logo-black.webp" alt="Artificial God. Military Laboratory" width="110" height="77">' +
           '<small>Creatura研究施設</small>' +
         '</a>' +
