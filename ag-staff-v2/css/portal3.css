@@ -1,0 +1,130 @@
+/* 職員用ポータル 第3版:第1版の無機質な黒画面 + 複数ページ */
+:root{color-scheme:dark;--bg:#000;--fg:#d6d6d6;--dim:#8a8a8a;--line:#3a3a3a;--red:#ff3b4e;--ok:#5fd08a;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;--jp:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;background:var(--bg);color:var(--fg)}
+body{font-family:var(--mono),var(--jp);font-size:14px;line-height:1.9;-webkit-text-size-adjust:100%;line-break:strict}
+a{color:#fff}
+a:hover{color:var(--red)}
+:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+h1,h2,h3,p{margin:0;font-weight:500}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+
+/* 認証 */
+.gate{min-height:100vh;display:grid;place-items:center;padding:24px}
+.gate form{width:min(100%,360px);display:grid;gap:10px}
+.gate .brand{letter-spacing:.08em}
+.gate .lv{color:var(--red);letter-spacing:.1em;margin-bottom:18px}
+.gate label{font-size:12px;color:var(--dim)}
+.gate input{font:inherit;background:#000;color:#fff;border:1px solid var(--fg);padding:10px 12px;border-radius:0;width:100%;letter-spacing:.2em}
+.gate button{font:inherit;background:var(--fg);color:#000;padding:10px;letter-spacing:.3em}
+.gate button:hover{background:#fff}
+.gate button:disabled{opacity:.5;cursor:wait}
+.log{min-height:5.7em;font-size:13px;color:var(--dim);white-space:pre-wrap}
+.log .ok{color:var(--ok)}
+.log .ng{color:var(--red)}
+
+/* 上部(全ページ共通) */
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 24px;padding:26px 0 8px;letter-spacing:.06em}
+.top a{text-decoration:none}
+.lv{color:var(--red)}
+.menu{display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:flex-end;font-size:13px;border-bottom:1px solid var(--fg);padding-bottom:10px}
+.menu a,.menu button{color:#fff;text-decoration:underline}
+.menu a:hover,.menu button:hover{color:var(--red)}
+.menu a[aria-current]{color:var(--red)}
+.menu .lock{color:var(--dim)}
+main{padding:18px 0 40px}
+.foot{border-top:1px solid var(--line);margin-top:34px;padding:12px 0 40px;font-size:12px;color:var(--dim)}
+.foot .warn{margin-top:6px}
+
+/* 見出しと一覧 */
+.h{letter-spacing:.1em;border-bottom:1px solid var(--line);padding-bottom:4px;margin:30px 0 10px;font-size:15px;font-weight:500;color:var(--fg)}
+.h:first-child{margin-top:8px}
+.crumbs{font-size:12px;margin-bottom:14px;color:var(--dim)}
+.crumbs a{color:var(--dim)}
+.crumbs a:hover{color:var(--red)}
+.lead{margin-bottom:12px}
+.more{margin-top:12px;font-size:13px}
+.empty{color:var(--dim)}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{display:none}
+.tbl td{padding:3px 14px 3px 0;vertical-align:top}
+.tbl td.n{color:var(--dim);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tbl td.t a{font-family:var(--jp)}
+.snip{font-family:var(--jp);font-size:13px;color:var(--dim);padding:0 0 8px}
+@media (max-width:640px){
+  .tbl tr{display:block;padding:4px 0}
+  .tbl td{display:inline;padding:0}
+  .tbl td.n{margin-right:10px;font-size:12px}
+  .tbl td.t{display:block}
+  .tbl tr:not(.row){display:block}
+}
+.sysg{display:grid;grid-template-columns:auto 1fr;gap:0 18px;max-width:420px}
+.sysg div{display:contents}
+.sysg b{font-weight:400;color:var(--ok)}
+.sysg b::before{content:": ";color:var(--dim)}
+.sysg b.ng{color:var(--red)}
+.sched{display:grid;grid-template-columns:7.2em 1fr;gap:2px 14px}
+.sched-t{grid-column:1/-1}
+.sched-t .n{color:var(--dim);margin-right:14px}
+.sched dl{grid-column:1/-1;margin:0;display:grid;grid-template-columns:5em 1fr;gap:0 8px}
+.sched dt{color:var(--dim)}
+.sched dd{margin:0}
+.denied{border:1px solid var(--red);color:var(--red);padding:12px 14px;margin-bottom:18px}
+.denied span{display:block;color:var(--fg);font-size:12px;margin-top:4px}
+
+/* 文書 */
+.path{color:var(--dim);font-size:12px}
+.dhead{border-bottom:1px solid var(--fg);padding-bottom:12px;margin:6px 0 18px;display:grid;grid-template-columns:auto 1fr;gap:2px 16px;font-size:12px}
+.dhead dt{color:var(--dim)}
+.dhead dd{margin:0}
+.dhead dd.title{font-family:var(--jp);font-size:18px;line-height:1.6;font-weight:700;color:#fff}
+@media (max-width:560px){.dhead{grid-template-columns:1fr}.dhead dt{margin-top:6px}}
+.doc{font-family:var(--jp);font-size:15px}
+.doc h3{font-family:var(--mono),var(--jp);font-size:14px;letter-spacing:.08em;margin:26px 0 8px;border-left:3px solid var(--fg);padding-left:10px;color:#fff}
+.doc h3:first-child{margin-top:0}
+.doc p{margin:6px 0}
+.doc ul{margin:6px 0;padding-left:1.3em}
+.doc table{border-collapse:collapse;margin:8px 0;width:100%}
+.doc th,.doc td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top;font-weight:400}
+.doc th{color:var(--dim);white-space:nowrap}
+.doc table.kv th{width:15em}
+.doc table.grid th,.doc table.grid td{text-align:center}
+.doc table.flowt .note{color:var(--dim);font-size:13px}
+.doc table.sm{font-size:13px}
+.mp,.mprow td,.mprow th{color:var(--red)!important}
+.evidence{margin:12px 0;max-width:360px}
+.evidence img{display:block;width:100%;border:1px solid var(--line)}
+.evidence figcaption{font-size:12px;color:var(--dim);margin-top:4px}
+.evals{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:14px}
+.eval{border:1px solid var(--line);padding:10px 12px;min-width:0}
+.eh{display:flex;justify-content:space-between;font-family:var(--mono)}
+.eh b{color:#fff;font-weight:500}
+.eh span{color:var(--dim);font-size:12px}
+.ev{font-size:13.5px}
+.note-b{border-left:1px solid var(--line);padding-left:12px;margin:10px 0}
+.note-b b{font-family:var(--mono);font-weight:500;color:var(--dim)}
+.table-x{overflow-x:auto}
+@media (max-width:480px){.evals{grid-template-columns:1fr}.doc table.kv th{width:auto;white-space:normal}}
+.nav2{display:flex;justify-content:space-between;gap:12px;margin-top:34px;padding-top:12px;border-top:1px solid var(--line);font-size:13px}
+
+/* 検索 */
+.grep{display:flex;align-items:center;gap:10px;margin:6px 0 4px}
+.grep span{color:var(--dim);white-space:nowrap}
+.grep input{flex:1;min-width:0;font:inherit;background:#000;color:#fff;border:1px solid var(--fg);padding:8px 10px;border-radius:0}
+.hitinfo{font-size:12px;color:var(--dim);min-height:1.9em;margin-bottom:10px}
+mark{background:var(--red);color:#000}
+
+/* 異常の表示 */
+.alert{position:fixed;left:0;right:0;top:0;z-index:60;background:var(--red);color:#000;padding:8px 18px;letter-spacing:.14em;font-size:13px;animation:alert 4.5s ease both}
+@keyframes alert{0%,100%{opacity:0}6%,90%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.alert{animation:none}}
+
+/* 常時表示の検索欄 */
+.gsearch{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.gsearch label{color:var(--dim);white-space:nowrap;font-size:13px}
+.gsearch input{flex:1;min-width:0;font:inherit;background:#000;color:#fff;border:1px solid var(--fg);padding:6px 10px;border-radius:0}
+.gsearch button{color:#fff;text-decoration:underline;white-space:nowrap}
+.gsearch button:hover{color:var(--red)}

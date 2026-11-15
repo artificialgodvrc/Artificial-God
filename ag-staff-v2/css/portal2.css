@@ -33,7 +33,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .prompt button:disabled{opacity:.4;cursor:wait}
 .prompt input{flex:1;min-width:0;font:inherit;background:transparent;color:var(--hi);border:0;outline:0;letter-spacing:.3em;caret-color:var(--hi);padding:2px 0}
 .log{margin-top:14px;min-height:7em;white-space:pre-wrap;color:var(--fg)}
-.log .ok{color:var(--hi)}
+.log .ok{color:#5fd08a}
+.log .lv{color:#ff3b4e}
+.log .hi{color:#fff}
 .log .ng{color:var(--red)}
 .log .wn{color:#b9a14a}
 .back{margin-top:22px;font-size:12px}
@@ -162,3 +164,10 @@ mark{background:var(--hi);color:#000}
 .sched dl{margin:0;display:grid;grid-template-columns:5em 1fr;gap:2px 12px}
 .sched dt{color:var(--dim)}
 .sched dd{margin:0;font-family:var(--jp)}
+
+/* ---------- 複数ページ版の追加分 ---------- */
+.more{margin-top:14px;font-size:12px}
+.more a{color:var(--fg);text-decoration:underline}
+.more a:hover{color:var(--hi)}
+.lead{margin-bottom:14px;color:var(--fg)}
+.doc mark{background:var(--hi);color:#000}
