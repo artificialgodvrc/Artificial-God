@@ -64,7 +64,7 @@
       var l1 = document.createElement('div'); l1.className = 'wn'; l1.textContent = '> 認証コードを受信しました。'; log.appendChild(l1);
       var l2 = document.createElement('div'); l2.className = 'wn'; l2.textContent = '> 職員データベースと照合中 '; log.appendChild(l2);
       var dots = 0, dt = setInterval(function () { if (dots < 8) { l2.textContent += '.'; dots++; } else clearInterval(dt); }, 300);
-      var hold = function () { return new Promise(function (r) { setTimeout(r, Math.max(0, wait - (Date.now() - t0))); }); };
+      var hold = function (ms) { return new Promise(function (r) { setTimeout(r, Math.max(0, (ms || wait) - (Date.now() - t0))); }); };   // 失敗は早めに返す
       if (revoked()) {   // 最終ページを見た端末は、もう入れない
         hold().then(function () {
           clearInterval(dt); log.textContent = '';
@@ -73,7 +73,7 @@
         });
         return;
       }
-      decrypt(input.value).then(function (text) { return hold().then(function () { return text; }); }, function (err) { return hold().then(function () { throw err; }); }).then(function (text) {
+      decrypt(input.value).then(function (text) { return hold().then(function () { return text; }); }, function (err) { return hold(1300).then(function () { throw err; }); }).then(function (text) {
         var d = JSON.parse(text);
         store(K_DATA, text); store(K_START, String(Date.now())); drop(K_ALERT);
         say([
