@@ -27,6 +27,7 @@
 
   /* ---------- 復号(認証ページだけ) ---------- */
   function b64(s) { var b = atob(s), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a; }
+  function gcEvent(name, title) { try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: name, title: title, event: true }); } catch (e) {} }   // アクセス解析のイベント(到達の記録)
   function norm(s) { return String(s).normalize('NFKC').trim().toLowerCase(); }
   function decrypt(code) {
     var d = PORTAL_DATA;
@@ -75,6 +76,7 @@
       }
       decrypt(input.value).then(function (text) { return hold().then(function () { return text; }); }, function (err) { return hold(1300).then(function () { throw err; }); }).then(function (text) {
         var d = JSON.parse(text);
+        gcEvent('event/portal-login', '裏ポータル ログイン');
         store(K_DATA, text); store(K_START, String(Date.now())); drop(K_ALERT);
         say([
           ['ok', '[ OK ] 職員認証            照合完了'],
