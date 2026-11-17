@@ -371,5 +371,5 @@ iframe.yt{cursor:auto}
 .team-row > div{display:flex;flex-direction:column}
 .team-row .staff{flex:1;grid-auto-rows:1fr}
 
-/* 実験体紹介の背景(ランダム):帯の中に収め、顔の位置を合わせる */
-.page-head img.bg.rnd{position:absolute;left:0;top:0;width:100%;height:100%;max-width:none;object-fit:cover;opacity:.5;will-change:transform}
+/* 実験体紹介の背景(ランダム):他のページと同じ固定背景。大きさと位置はページ内のスクリプトで決める */
+.page-head img.bg.rnd{max-width:none}

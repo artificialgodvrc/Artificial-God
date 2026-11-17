@@ -16,28 +16,22 @@
 
 <div class="page-head">
   <img class="bg rnd" id="head-bg" src="img/subject-bg/7.webp" alt="">
-  <script>/* 開くたびに背景の実験体を変える(前回と同じものは続けない)。顔が帯に入るよう位置を合わせ、スクロールでゆっくり動かす(パララックス) */
+  <script>/* 開くたびに背景の実験体を変える(前回と同じものは続けない)。他のページと同じく画面に固定し、顔が帯に入る位置と大きさにする */
   (function(){
   // [画像, 顔の横位置, 顔の縦位置, 帯の中で顔を置く高さ](位置は画像に対する割合)
   var B=[["1",.76,.51,.5],["2",.50,.49,.3],["3",.64,.45,.5],["4",.51,.45,.3],["5",.41,.23,.4],["6",.30,.23,.4],["7",.50,.27,.3]];
   var m=/[?&]bg=(\d)/.exec(location.search),i,last=-1;try{last=+localStorage.getItem("ag-subject-bg")}catch(e){}
   if(m)i=+m[1]-1;else{do{i=Math.floor(Math.random()*B.length)}while(B.length>1&&i===last)}
   try{localStorage.setItem("ag-subject-bg",i)}catch(e){}
-  var b=B[i],im=document.getElementById("head-bg"),head=im.parentNode,SPEED=.4,R=16/9,g={};
-  var still=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var b=B[i],im=document.getElementById("head-bg"),head=im.parentNode,R=16/9;
   im.src="img/subject-bg/"+b[0]+".webp";
   function layout(){
-    var w=head.clientWidth,h=head.clientHeight,top0=head.getBoundingClientRect().top+window.scrollY;
-    var travel=still?0:SPEED*top0;               // 帯の上端が見えている間に動く量
-    var H=Math.max(w/R,h+travel,(h*b[3]+travel)/b[2]),W=H*R;   // 動いても帯が埋まり、顔が帯に入る大きさ
-    var y=h*b[3]-b[2]*H;                          // 顔を帯の決めた高さに
-    y=Math.min(y,-travel);y=Math.max(y,h-H);      // 上下に隙間を作らない
-    var x=Math.min(0,Math.max(w-W,w/2-b[1]*W));   // 横は顔が中央寄りに
+    var w=document.documentElement.clientWidth,h=head.clientHeight,t=head.getBoundingClientRect().top+window.scrollY,f=t+h*b[3];
+    var H=Math.max(w/R,f/b[2],t+h),W=H*R;          // 画面上端から帯の下まで埋まり、顔が帯に入る大きさ
+    var y=Math.max(Math.min(f-b[2]*H,0),t+h-H);    // 顔を帯の決めた高さに(上に隙間を作らない)
+    var x=Math.min(0,Math.max(w-W,w/2-b[1]*W));    // 横は顔が中央寄りに
     im.style.width=W+"px";im.style.height=H+"px";im.style.left=x+"px";im.style.top=y+"px";
-    g.top0=top0;g.h=h;move();
   }
-  function move(){if(still)return;var s=Math.min(window.scrollY,g.top0+g.h);im.style.transform="translate3d(0,"+(s*SPEED)+"px,0)";}
-  var t=0;window.addEventListener("scroll",function(){if(!t){t=requestAnimationFrame(function(){t=0;move();});}},{passive:true});
   window.addEventListener("resize",layout);
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",layout);else layout();
   })();</script>
