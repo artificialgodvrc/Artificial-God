@@ -57,7 +57,8 @@
   (function noise(){var d=img.data;for(var k=0;k<d.length;k+=4){var v=Math.random()*255|0;d[k]=d[k+1]=d[k+2]=v;d[k+3]=255}cx.putImageData(img,0,0);if(Date.now()-t0<3200)requestAnimationFrame(noise)})();
   setTimeout(function(){en.textContent=orig;head.classList.remove("ag-failing")},2600);
   setTimeout(function(){box.remove()},3300);
-  try{if(window.goatcounter&&goatcounter.count)goatcounter.count({path:"event/subject-failure",title:"失敗作を目撃",event:true})}catch(e){}
+  // count.jsは後から読み込まれるので、使えるようになるまで待ってから記録する(最大15秒)
+  (function rec(n){try{if(window.goatcounter&&goatcounter.count){goatcounter.count({path:"event/subject-failure",title:"失敗作を目撃",event:true});return}}catch(e){return}if(n<60)setTimeout(function(){rec(n+1)},250)})(0);
   })();</script>
 </div>
 <div class="intro"><div class="wrap"><p>Artificial God. Creatura研究施設で生み出された実験体たちの記録です。それぞれが独自の特性と製造番号を付与されています。</p></div></div>
