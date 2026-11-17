@@ -26,6 +26,39 @@
     <span class="en">CREATURA</span>
     <h1>実験体紹介</h1>
   </div>
+  <style>/* 失敗作:まれに最初の数秒だけ、ノイズとグリッチの混じった別の画像を見せる */
+  .ag-fail{position:fixed;inset:0;pointer-events:none;animation:agFailOut .5s 2.6s ease forwards}
+  .ag-fail img,.ag-fail canvas,.ag-fail i{position:absolute;inset:0;width:100%;height:100vh;object-fit:cover}
+  .ag-fail .base{opacity:.72;filter:contrast(1.5) brightness(1.15);animation:agJolt 2.6s steps(1) infinite}
+  .ag-fail .r,.ag-fail .c{opacity:.35;mix-blend-mode:screen}
+  .ag-fail .r{filter:sepia(1) saturate(8) hue-rotate(-40deg);animation:agR .9s steps(1) infinite}
+  .ag-fail .c{filter:sepia(1) saturate(8) hue-rotate(150deg);animation:agC .7s steps(1) infinite}
+  .ag-fail canvas{opacity:.13}
+  .ag-fail i{background:repeating-linear-gradient(0deg,rgba(0,0,0,.45) 0 2px,transparent 2px 4px);animation:agFlick .18s steps(1) infinite}
+  .page-head.ag-failing .en,.page-head.ag-failing h1{animation:agTxt .3s steps(1) infinite}
+  @keyframes agJolt{0%{transform:none;clip-path:none}8%{transform:translateX(-14px);clip-path:inset(30% 0 52% 0)}11%{transform:none;clip-path:none}27%{transform:translateX(10px) skewX(-4deg)}30%{transform:none}46%{clip-path:inset(0 0 70% 0);transform:translateX(22px)}49%{clip-path:none;transform:none}63%{transform:translateX(-6px) scaleY(1.04)}66%{transform:none}82%{clip-path:inset(55% 0 20% 0);transform:translateX(-26px)}85%{clip-path:none;transform:none}}
+  @keyframes agR{0%{transform:translateX(7px)}40%{transform:translateX(-4px)}70%{transform:translateX(12px)}}
+  @keyframes agC{0%{transform:translateX(-7px)}50%{transform:translateX(5px)}80%{transform:translateX(-11px)}}
+  @keyframes agFlick{0%{opacity:.9}50%{opacity:.5}}
+  @keyframes agTxt{0%{transform:none}33%{transform:translateX(3px);opacity:.7}66%{transform:translateX(-2px)}}
+  @keyframes agFailOut{0%{opacity:1}30%{opacity:.2}45%{opacity:.9}100%{opacity:0;visibility:hidden}}
+  </style>
+  <script>(function(){
+  var CHANCE=1/15, KEY="ag-fail-seen";           // 15回に1回くらい。同じ人には1回の訪問で1度だけ
+  var force=/[?&]fail=1/.test(location.search),seen=false;try{seen=sessionStorage.getItem(KEY)==="1"}catch(e){}
+  var still=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!force&&(seen||still||Math.random()>=CHANCE))return;
+  try{sessionStorage.setItem(KEY,"1")}catch(e){}
+  var head=document.querySelector(".page-head"),en=head.querySelector(".en"),orig=en.textContent;
+  var box=document.createElement("div");box.className="ag-fail";
+  box.innerHTML='<img class="base" src="img/subject-bg/failure.webp" alt=""><img class="r" src="img/subject-bg/failure.webp" alt=""><img class="c" src="img/subject-bg/failure.webp" alt=""><canvas width="320" height="180"></canvas><i></i>';
+  head.insertBefore(box,head.querySelector(".wrap"));head.classList.add("ag-failing");en.textContent="FAILURE";
+  var cv=box.querySelector("canvas"),cx=cv.getContext("2d"),img=cx.createImageData(320,180),t0=Date.now();
+  (function noise(){var d=img.data;for(var k=0;k<d.length;k+=4){var v=Math.random()*255|0;d[k]=d[k+1]=d[k+2]=v;d[k+3]=255}cx.putImageData(img,0,0);if(Date.now()-t0<3200)requestAnimationFrame(noise)})();
+  setTimeout(function(){en.textContent=orig;head.classList.remove("ag-failing")},2600);
+  setTimeout(function(){box.remove()},3300);
+  try{if(window.goatcounter&&goatcounter.count)goatcounter.count({path:"event/subject-failure",title:"失敗作を目撃",event:true})}catch(e){}
+  })();</script>
 </div>
 <div class="intro"><div class="wrap"><p>Artificial God. Creatura研究施設で生み出された実験体たちの記録です。それぞれが独自の特性と製造番号を付与されています。</p></div></div>
 <main>
